@@ -1,0 +1,61 @@
+<ion-view hide-nav-bar="true" id="news">
+    <ion-content scroll="false">
+        <div class="header">
+            <h1>
+                核品汇
+            </h1>
+            <div class="list list-inset">
+                <div class="item item-input-inset md-padding-none">
+                    <label class="item-input-wrapper md-bg-transparent">
+                        <i class="icon ion-search placeholder-icon"></i>
+                        <input type="text" ng-model="home.keyword" placeholder="搜索企业/产品/参数">
+                    </label>
+                    <button ng-click="search()" class="button button-clear">
+                        搜索
+                    </button>
+                </div>
+            </div>
+        </div>
+        <h2 class="padding" id="news-heading">新闻资讯</h2>
+        <ion-scroll >
+            <div class="list" style="padding-bottom: 218px;">
+                <a class="item item-light" style="height: 130px"
+                   ng-repeat="new in news track by new.id"
+                   ui-sref="tab.news({url: '{{new.url}}' })">
+                    <h2 style="padding-right: 80px">{{new.title || '无'}}
+                    </h2>
+                     <span style="font-size: 12px; position: absolute; right: 10px; top: 16px "></span>
+                     <span style="font-size: 12px; position: absolute; right: 10px; top: 16px "
+                           class=" text-right">{{new.updateDate}}</span>
+                    <div class="md-position-re">
+                        <div class="item-thumbnail-left md-item-thumbnail-left-inner">
+                            <img ng-src="{{new.imageUrl}}">
+                            <p class="paragraph-area">
+                                {{new.summary}}
+                            </p>
+
+                        </div>
+                    </div>
+                </a>
+            </div><!-- end list-->
+            <!--<div class="list" style="padding-bottom: 218px;">-->
+                <!--<a class="item item-light" style="height: 130px"-->
+                   <!--ng-repeat="new in news track by new.id"-->
+                   <!--ng-click="openNews(new)">-->
+                    <!--<h2 class="">{{new.title || '无'}}-->
+                        <!--<span style="display: inline-block; font-size: 12px; padding-top: 3px"-->
+                              <!--class="pull-right text-right">{{new.updateDate}}</span></h2>-->
+                    <!--<div class="md-position-re">-->
+                        <!--<div class="item-thumbnail-left md-item-thumbnail-left-inner">-->
+                            <!--<img ng-src="{{new.imageUrl}}">-->
+                            <!--<p class="paragraph-area">-->
+                                <!--{{new.summary}}-->
+                            <!--</p>-->
+
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</a>-->
+            <!--</div>&lt;!&ndash; end list&ndash;&gt;-->
+        </ion-scroll>
+    </ion-content>
+</ion-view>

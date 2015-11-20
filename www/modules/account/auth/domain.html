@@ -1,0 +1,19 @@
+<ion-view view-title="职业角色" cache-view="false" hide-tabs='true'>
+    <ion-content class="has-footer">
+        <div class="list">
+            <ion-checkbox ng-repeat="domain in user.domains"
+                          ng-model="domain.checked"
+                          ng-checked="domain.checked"
+                          ng-click="selectDomain(domain)">
+                {{ domain.name }}
+            </ion-checkbox>
+        </div>
+
+    </ion-content>
+    <div class="bar bar-footer md-padding-none">
+        <button ng-click="updateDomain()" class="button button-block button-positive"
+                style="border-radius: 0; margin: 0">
+            确定
+        </button>
+    </div>
+</ion-view>

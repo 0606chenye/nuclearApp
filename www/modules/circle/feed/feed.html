@@ -1,0 +1,87 @@
+<ion-view cache-view="false" view-title="行业圈">
+    <ion-content delegate-handle="feedContent">
+        <div class="list card" style="margin-left: 0; margin-right: 0;">
+
+            <div class="item item-avatar md-item-avatar-square md-verify-badge">
+                <img ng-src="{{::feed.creatorProfile}}">
+                <h2><a  ui-sref="tab.user({id:feed.creatorId})" class="md-link-theme padding-right">{{::feed.creatorNickName}}</a></h2>
+                <p>{{::feed.companyName}} {{Common.getTimeLapse(feed.publishDate)}}</p>
+            </div>
+
+            <div class="item item-body">
+
+                <p  style="margin-top: 0;">
+                    {{::feed.content}}
+                </p>
+                <!--<div><img class="md-half-image" src="img/pic1.jpg"></div>-->
+                <div ng-if="feed.images.length>1" class="md-clip-mask" ng-repeat="image in feed.images track by $index">
+                    <img ng-click="showImages($index, feed.images)" ng-src="{{::image}}">
+                </div>
+
+                <!--只有一张图的情况-->
+                <div ng-if="feed.images.length==1" class="md-clip-mask-large">
+                    <img ng-click="showImages(0,feed.images)" ng-src="{{::feed.images[0]}}">
+                </div>
+
+            </div>
+
+            <!--<div class="item tabs tabs-light tabs-color-dark tabs-secondary tabs-icon-left">-->
+            <!--<a class="tab-item" href="#">-->
+            <!--<i class="icon ion-thumbsup calm"></i>-->
+            <!--点赞-->
+            <!--</a>-->
+            <!--<a class="tab-item" href="#">-->
+            <!--<i class="icon ion-chatbox"></i>-->
+            <!--评论-->
+            <!--</a>-->
+
+            <!--</div>-->
+
+            <ion-list id="theReply" class="md-no-clip" >
+                <div class="item item-divider">
+                    评论
+
+
+                        <i class="icon calm pull-right ion-compose"  style="font-size: 1.5rem"  ng-click="setReplying()"></i>
+
+                </div>
+
+                <div class="item item-avatar" style="padding-bottom: 8px; padding-top: 8px; min-height: 53px"
+                     ng-click="replyWhichComment(comment)" ng-repeat="comment in feed.comments track by comment.id">
+                    <img style="top: 8px; border-radius: 5px" ng-src="{{comment.profile}}"/>
+                    <h2 style="font-size: 0.8rem"><a ng-click="selectReplyWhom(comment.nickName)" class="md-link-theme">{{comment.nickName}}</a> </h2>
+                    <p style="font-size: 0.8rem">{{comment.content}}</p>
+                </div>
+            </ion-list>
+
+        </div>
+
+
+    </ion-content>
+    <a id="theBottom"></a>
+    <!--<ion-footer-bar  align-title="" keyboard-attach class="bar-stable">-->
+       <!-- -->
+        <!--&lt;!&ndash;<div class="item tabs tabs-stable tabs-color-dark tabs-secondary tabs-icon-left" style="border-color: transparent;">&ndash;&gt;-->
+            <!--&lt;!&ndash;<a class="tab-item" ng-click="setReplying()">&ndash;&gt;-->
+                <!--&lt;!&ndash;<i class="icon ion-chatbox"></i>&ndash;&gt;-->
+                <!--&lt;!&ndash;评论&ndash;&gt;-->
+            <!--&lt;!&ndash;</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div ng-if="replying" class="item-input-inset" style="width: 100%">&ndash;&gt;-->
+            <!--&lt;!&ndash;<label class="item-input-wrapper" style="background-color: white;">&ndash;&gt;-->
+                <!--&lt;!&ndash;<textarea  type="text" placeholder="回复{{replyWhom}}" ng-model="feed.commentInput" ng-minlength="1"&ndash;&gt;-->
+                          <!--&lt;!&ndash;style="width: 100%; resize: none;"></textarea>&ndash;&gt;-->
+            <!--&lt;!&ndash;</label>&ndash;&gt;-->
+            <!--&lt;!&ndash;<button ng-click="postComment()" class="button button-calm button-small">&ndash;&gt;-->
+                <!--&lt;!&ndash;提交&ndash;&gt;-->
+            <!--&lt;!&ndash;</button>&ndash;&gt;-->
+            <!--&lt;!&ndash;<button ng-click="cancelReplying()" class="button button-calm button-small button-clear" style="font-size: 11px;">&ndash;&gt;-->
+                <!--&lt;!&ndash;取消&ndash;&gt;-->
+            <!--&lt;!&ndash;</button>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+    <!--</ion-footer-bar>-->
+</ion-view>

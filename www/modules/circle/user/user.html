@@ -1,0 +1,60 @@
+<ion-view  view-title="用户信息" cache-view="false">
+    <ion-content>
+
+        <div class="item item-stable item-avatar">
+            <img ng-src="{{user.profile}}">
+            <h2 style="padding-top: 10px">{{user.nickName}}
+                <i class="ion-person assertive" ng-class="{'assertive': !user.gender, 'calm': user.gender}"></i></h2>
+            <!--<p>{{user.username}}</p>-->
+        </div>
+
+        <div class="item" style="padding: 8px 16px">
+            <div class="row">
+                <div class="col-20">
+                    <h2>公司</h2>
+                </div>
+                <div class="col-80 text-right">
+                    <span style="color: grey">{{user.companyName}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="item" style="padding: 8px 16px">
+            <div class="row">
+                <div class="col-20">
+                    <h2>角色</h2>
+                </div>
+                <div class="col-80 text-right">
+                    <span style="color: grey">{{user.role}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="item" style="padding: 8px 16px">
+            <div class="row">
+                <div class="col-25">
+                    <h2>个性签名</h2>
+                </div>
+                <div class="col-75 text-right">
+                    <span style="color: grey">{{user.signature}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="padding">
+            <button class="button button-block button-calm" ng-click="openSendMailModal()">
+                发私信
+            </button>
+        </div>
+
+        <!--<div class="item item-input-inset" ng-show="showInput">-->
+            <!--<label class="item-input-wrapper md-bg-transparent">-->
+                <!--<textarea cols="40" type="text" ng-model="user.mailContent" placeholder="给 {{user.nickName}} 发私信"></textarea>-->
+            <!--</label>-->
+            <!--<button class="button button-small button-calm" ng-click="sendMail()">-->
+                <!--发送-->
+            <!--</button>-->
+        <!--</div>-->
+
+    </ion-content>
+</ion-view>

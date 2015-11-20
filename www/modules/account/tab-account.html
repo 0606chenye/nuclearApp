@@ -1,0 +1,112 @@
+<ion-view hide-nav-bar="true" cache-view="true" view-title="我的账户">
+    <div class="bar bar-header bar-positive">
+        <h1 class="title">我的账户</h1>
+    </div>
+    <ion-content ng-class="{'md-android-has-header': !isIos,  'md-ios-has-header': isIos}"
+            style="background-color: #eeeeee">
+        <div class="my-account">
+            <div id="welcome-no-auth" ng-show="!auth.isAuthenticated()">
+                <h3>hi,欢迎来到核品汇</h3>
+
+                <a  ng-click="goLogin()"
+                   class="button button-light button-small" style="width: 110px; height: 35px; margin-top: 10px; font-size: 1em; line-height: 30px">
+                    登 录
+                </a>
+            </div>
+
+            <div id="welcome-auth" ng-show="auth.isAuthenticated()">
+                <div  ui-sref="tab.profile">
+                    <!--<img src="img/nuclearApp.png" alt=""/>-->
+                    <img ng-src="{{currentUser.profile}}">
+                    <div style="margin-top: 10px; margin-bottom: 3px">
+                        <span style="font-size: 18px">{{currentUser.nickName}}</span><span>{{'      ' + currentUser.role}}</span>
+
+                    </div>
+                    <p>{{currentUser.companyName}} </p>
+                    <i class="icon ion-chevron-right icon-accessory"></i>
+
+                </div>
+
+            </div>
+
+            <div class="list" style="margin-bottom: 10px">
+
+                <!--<a class="item item-light item-avatar item-icon-right" ui-sref="tab.profile"-->
+                   <!--ng-show="auth.isAuthenticated()">-->
+                    <!--<img src="img/nuclearApp.png" alt=""/>-->
+                    <!--&lt;!&ndash;<img ng-src="{{currentUser.profile}}">&ndash;&gt;-->
+                    <!--<h2>{{currentUser.nickName}}</h2>-->
+                    <!--<p>{{currentUser.username}}</p>-->
+                    <!--<i class="icon ion-chevron-right icon-accessory"></i>-->
+                <!--</a>-->
+
+                <!--<div class="item item-light md-padding-none" id="user-social-list">-->
+                <!--<div class="row">-->
+                <!--<a href="#" class="md-link-theme col text-center"><div><i class="ion-chatbox-working"></i><br/>评论</div></a>-->
+                <!--<a href="#" class="md-link-theme col text-center"><div><i class="ion-thumbsup"></i><br/>赞</div></a>-->
+                <!--<a href="#" class="md-link-theme col text-center"><div><i class="ion-android-mail"></i><br/>私信</div></a>-->
+                <!--</div>-->
+                <!--</div>-->
+
+            </div>
+
+            <ion-list class="md-icon-thumbnail-left">
+                <a class="item item-light item-thumbnail-left item-icon-right" ui-sref="tab.mailList">
+                    <i class=" ion-ios-email-outline"></i>
+                    <div class="badge badge-assertive " style="top:20px;" ng-if="badgeCount > 0">{{badgeCount}}</div>
+                    <h2>私信</h2>
+                    <i class="icon ion-chevron-right icon-accessory"></i>
+                </a>
+                <a class="item item-light item-thumbnail-left item-icon-right" ui-sref="tab.myCircle">
+                    <i class=" ion-aperture"></i>
+                    <h2>我的行业圈</h2>
+                    <i class="icon ion-chevron-right icon-accessory"></i>
+                </a>
+                <a class="item item-light item-thumbnail-left item-icon-right" ui-sref="tab.favorites">
+                    <i class="ion-star"></i>
+                    <h2>我的关注</h2>
+                    <i class="icon ion-chevron-right icon-accessory"></i>
+                </a>
+                <!--<a ng-hide="currentUser.isVerified"-->
+                   <!--class="item item-light item-thumbnail-left item-icon-right" ui-sref="tab.verification">-->
+                    <!--<i class="ion-social-vimeo"></i>-->
+                    <!--<h2>申请认证</h2>-->
+                    <!--<i class="icon ion-chevron-right icon-accessory"></i>-->
+                <!--</a>-->
+                <!--<a class="item item-light item-thumbnail-left item-icon-right" ui-sref="tab.broadcast">-->
+                    <!--<i class="ion-android-notifications-none"></i>-->
+                    <!--<h2>站内广播</h2>-->
+                    <!--<i class="icon ion-chevron-right icon-accessory"></i>-->
+                <!--</a>-->
+                <a class="item item-light  item-thumbnail-left item-icon-right" ui-sref="tab.feedback">
+                    <i class="ion-compose"></i>
+                    <h2>意见反馈</h2>
+                    <i class="icon ion-chevron-right icon-accessory"></i>
+                </a>
+                <!--<a class="item item-light  item-thumbnail-left item-icon-right" href="#">-->
+                <!--<i class="ion-heart"></i>-->
+                <!--<h2>关于我们</h2>-->
+                <!--<i class="icon ion-chevron-right icon-accessory"></i>-->
+                <!--</a>-->
+                <a class="item item-light  item-thumbnail-left item-icon-right" ui-sref="tab.settings">
+                    <i class="ion-ios-information-outline"></i>
+                    <h2>关于核品汇</h2>
+                    <i class="icon ion-chevron-right icon-accessory"></i>
+                </a>
+
+                <!--<a ng-show="auth.isAuthenticated()" class="item item-light  item-thumbnail-left item-icon-right" ng-click="logout()">-->
+                    <!--<i class="ion-log-out"></i>-->
+                    <!--<h2>退出登录</h2>-->
+                    <!--<i class="icon ion-chevron-right icon-accessory"></i>-->
+                <!--</a>-->
+                <a class="item" href="tel:400-882-3278">
+                    <h1 class="assertive" style="font-size: 20px">400-882-3278</h1>
+                    <p>客服全天24小时在线</p>
+                </a>
+            </ion-list>
+
+
+            </div>
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,20 @@
+<ion-view view-title="产品详细列表">
+    <ion-content scroll="false" style="padding-left: 204px">
+        <ion-scroll class="list md-top-list">
+                <a class="item item-light" ng-repeat="menu in menus" ng-click="firstItemClick(menu)" ng-class="{'md-item-active': menu.clicked}" >
+                    <img class="img-square" ng-src="{{menu.img}}" ><span>{{menu.name}}</span>
+                </a>
+        </ion-scroll>
+        <ion-scroll delegate-handle="secondMenuScroll"  class="list md-sub-list" ng-show="firstSelectMenu">
+                <a class="item item-light"  ng-repeat="menu2 in firstSelectMenu.secondMenu"
+                   ng-click="secondItemClick(menu2)" ng-class="{'md-item-active': menu2.clicked}">
+                    {{menu2.name}}
+                </a>
+        </ion-scroll>
+        <ion-scroll delegate-handle="thirdMenuScroll" class="list md-butt-list" ng-show="secondSelectMenu">
+            <a class="item item-stable" href="#/tab/product/category/{{menu3.id}}" ng-repeat="menu3 in secondSelectMenu.thirdMenu">
+                {{menu3.name}}
+            </a>
+        </ion-scroll>
+    </ion-content>
+</ion-view>

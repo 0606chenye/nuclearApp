@@ -1,0 +1,56 @@
+//------------------
+//----------md-button----------
+//-------------------------
+//比ionic默认的small button更小
+.md-button-small {
+  padding: 4px $button-small-padding 4px;
+  min-width: $button-small-height;
+  min-height: 16px;
+  font-size: 14px;
+  line-height: 16px;
+
+  .icon:before,
+  &.icon:before,
+  &.icon-left:before,
+  &.icon-right:before {
+    font-size: 14px;
+    line-height: 14px;
+    margin-top: 2px;
+  }
+}
+
+//转换开关
+.button-track {
+  border-radius: 3px;
+  background-color: $calm;
+  padding: 1px;
+  min-height: 22px;
+}
+
+.button-visible {
+  @extend .button-light;
+}
+.buttonInvisible {
+  @extend .button-clear;
+  color: #fff;
+
+}
+
+.item-button-right {
+  .button-small {
+    padding: 2px $button-small-padding 1px;
+    min-width: $button-small-height;
+    min-height: $button-small-height + 2;
+    font-size: $button-small-font-size;
+    line-height: $button-small-height - $button-border-width - 1;
+
+    .icon:before,
+    &.icon:before,
+    &.icon-left:before,
+    &.icon-right:before {
+      font-size: $button-small-icon-size;
+      line-height: $button-small-icon-size + 3;
+      margin-top: 3px;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+
+
+
+<ion-content class="doc-scroll">
+    <div class="padding-top" style="margin-top: 10px;" ng-repeat="doc in info.docs track by doc.id">
+        <h4 class="padding">{{::doc.name}} <span style="color: grey; font-size: 12px">{{::doc.size}}</span></h4>
+        <hr/>
+
+        <div class="row text-center">
+            <a ng-click="downloadDoc(doc)"
+               class="col col-80 col-offset-10 button  button-calm">
+                <i class="ion-document"></i> 点击下载PDF全文
+            </a>
+        </div>
+    </div>
+
+    <div style="min-height: 48px"></div>
+</ion-content>
+
+
+
+
+<!--<div class="padding-top" style="margin-top: 10px;">-->
+<!--<h4 class="padding">运行维护手册</h4>-->
+<!--<hr/>-->
+<!--<div class="row text-center">-->
+<!--<a ng-click="downloadMaintenanceDocUrl()"-->
+<!--ng-disabled="!info.maintenanceDocUrl"-->
+<!--class="col col-80 col-offset-10 button  button-calm">-->
+<!--<i class="ion-document"></i> 点击下载PDF全文-->
+<!--</a>-->
+<!--</div>-->
+<!--</div>-->

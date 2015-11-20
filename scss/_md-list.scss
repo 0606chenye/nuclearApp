@@ -1,0 +1,571 @@
+
+//给段落一定的高度以显示更多文字
+p.paragraph-area {
+  height: $item-thumbnail-height - 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+//当thumbnail处于item内部时，去除多余padding和margin
+.md-item-thumbnail-left-inner {
+  min-height: 0;
+  padding-left: $item-thumbnail-width + $item-padding;
+  > img:first-child {
+    left: 0;
+  }
+}
+
+//将thumbnail的img大小限制为60*60，使得列表紧凑
+.md-condensed-thumbnail {
+  .item-thumbnail-left {
+    min-height: 80px;
+    padding-left: 80px;
+    > img:first-child {
+      width: 50px;
+      height: 50px;
+    }
+    h2 {
+      line-height: 38px;
+      font-size: 18px;
+    }
+    p {
+      //margin-top: 21px;
+      margin-bottom: 0;
+    }
+  }
+}
+
+//更多形式的组合thumbnail
+.md-thumbnail-complex {
+  .item-thumbnail-left {
+    padding-top: 10px;
+  }
+  .item {
+    min-height: 120px;
+    padding-bottom: 2px;
+  }
+  a{
+    text-decoration: none;
+    &:visited {
+      color: inherit;
+    }
+    &:active,
+    &:focus {
+      color: $theme-dark;
+    }
+  }
+  .left {
+    position: absolute;
+    top: $item-thumbnail-margin;
+    left: $item-thumbnail-margin;
+    .md-logo-mask {
+      width: 80px;
+      height: 80px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    span {
+      display: block;
+      text-align: center;
+    }
+  }
+
+  span {
+    font-size: $font-size-small;
+  }
+
+  .main {
+    min-height: 76px;
+    position: relative;
+    //border-bottom: 1px solid #D9D9D9;
+    padding-bottom: 8px;
+    h2 {
+      overflow: visible;
+      white-space: normal;
+      line-height: 20px;
+      width: 80%;
+      font-size: 14px;
+    }
+    button {
+      position: absolute;
+      right: 0;
+      top: 0;
+      &:last-of-type {
+        position: absolute;
+        right: 0;
+        top:32px;
+      }
+    }
+    p {
+      width: 80%;
+      //&:first-of-type {
+      font-size: $font-size-small;
+      height: 47px;
+      white-space: normal;
+      padding-top: 5px;
+      //}
+
+
+    }
+
+    span {
+      color: inherit;
+      font-size: inherit;
+    }
+  }
+
+  .footer-note {
+    min-height: 32px;
+    padding: 6px 0;
+    p {
+      position: relative;
+      padding-left: 55px;
+      padding-right: 80px;
+      color: $calm;
+      font-size: $font-size-small;
+      span {
+        position: absolute;
+        &:first-of-type {
+        top: 0;
+        left: 0;
+        }
+        &:last-of-type {
+          top: 0;
+          right: 0;
+        }
+      }
+      }
+
+  }
+}
+
+.md-img-mask {
+  width: 120px;
+  height: 80px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+//多级列表
+.md-top-list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80px;
+  .item {
+    position: relative;
+    padding: 5px 15px;
+    span {
+      display: block;
+      font-size: 12px;
+
+      //color: white;
+      text-align: center;
+      //width: 68px;
+      //position: absolute;
+      //bottom: 10px;
+      //left: 6px;
+      //background-color: rgba(0,0,0, 0.5);
+    }
+  }
+  .md-item-active:after {
+
+    content: '';
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+
+    border-right:10px solid #dddddd;
+    z-index: 1999;
+    position: absolute;
+    top: 40%;
+    right: 0;
+  }
+  img.img-square {
+    width: 50px;
+    height: 50px;
+  }
+
+}
+
+.md-sub-list {
+  width: 40%;
+  position: absolute;
+  top: 0;
+  left: 80px;
+  z-index: 998;
+  //min-height: 110%;
+  //border-left: 1px solid $calm;
+  background-color: #dddddd;
+  .item {
+    //padding: 8px;
+    margin-left: 5px;
+    //margin-right: 5px;
+
+    //width: 150px;
+    overflow: visible;
+    white-space: normal;
+    border-left: 0;
+    background-color: #dddddd;
+    border-color: darken(white,8%);
+  }
+  .item.md-item-active {
+
+    background-color: white;
+    color: #6a6b69;
+    margin-left: 5px;
+    padding-left: 10px;
+    }
+  }
+
+
+.md-butt-list {
+  position: relative;
+  left: 8%;
+  width: 95%;
+
+  z-index: 2999;
+  //min-height: 110%;
+  background-color: white;
+  .item {
+    color: #6a6b69;
+    background-color: white;
+    //padding: 12px 0 12px 16px;
+    border: transparent;
+    margin-left: 0;
+    overflow: visible;
+    white-space: normal;
+  }
+}
+
+.md-province-list {
+  width: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 998;
+  //min-height: 110%;
+  //border-left: 1px solid $calm;
+  background-color: #dddddd;
+  .item {
+    //padding: 8px;
+    margin-left: 5px;
+    //margin-right: 5px;
+
+    width: 150px;
+    overflow: visible;
+    white-space: normal;
+    border-left: 0;
+    background-color: #dddddd;
+    //border-color: white;
+  }
+  .item.md-item-active {
+
+    background-color: white;
+    color: #007aff;
+    margin-left: 5px;
+    padding-left: 10px;
+  }
+}
+
+.md-city-list {
+  width: 60%;
+  position: absolute;
+  top: 0;
+  left: 150px;
+  z-index: 2999;
+  //min-height: 110%;
+  background-color: white;
+  .item {
+    color: #007aff;
+    background-color: white;
+    //padding: 12px 0 12px 16px;
+    border: transparent;
+    margin-left: 0;
+    overflow: visible;
+    white-space: normal;
+  }
+}
+
+
+//醒目的item项
+.md-highlight-item {
+  min-height: 52px;
+  //overflow: hidden;
+  position: relative;
+  padding-left: 60px;
+  > span:first-child {
+    position: absolute;
+    left: $item-thumbnail-margin +5;
+  }
+  p {
+    color: #797D7E;
+    //overflow: hidden;
+    //white-space: nowrap;
+    //text-overflow: ellipsis;
+  }
+  &.item-stable {
+    @include item-style(darken($item-stable-bg, 10%), darken($item-stable-border, 10%), $item-stable-text);
+  }
+}
+
+.md-highlight-item.active,
+.md-highlight-item.activated {
+  &.item-calm {
+    @include item-active-style(lighten($item-calm-active-bg, 20%), lighten($item-calm-active-border, 20%));
+  }
+}
+
+//thumbnail 带边框的图
+.md-list-item-bordered {
+  .item-thumbnail-left {
+    > img {
+      width: 78px;
+      height: 78px;
+      border: solid 1px darken($light, 20%);
+      padding: 2px;
+    }
+  }
+}
+
+//h2不隐藏
+h2.md-thumbnail-title-full {
+  font-size: $font-size-base;
+  overflow: visible;
+  white-space: normal;
+}
+//加大h2高度
+h2.md-title-loose {
+  line-height: 30px;
+}
+//全card可点击
+.md-card-clickable {
+  a{
+    padding: 0;
+    img {
+      height: 200px;
+    }
+    .detailed-title {
+      padding: 16px;
+      p {
+        font-size: $font-size-small;
+        height: 40px;
+        white-space: normal;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+//card角标
+.card {
+  position: relative;
+  margin-top: 0;
+
+
+  .md-tag {
+    transform:rotate(-45deg);
+    -ms-transform:rotate(-45deg); 	/* IE 9 */
+    -moz-transform:rotate(-45deg); 	/* Firefox */
+    -webkit-transform:rotate(-45deg); /* Safari 和 Chrome */
+    -o-transform:rotate(-45deg); 	/* Opera */
+    position: absolute;
+    top: 15px;
+    left: -30px;
+    padding: 0px 40px;
+    background-color: limegreen;
+    z-index: 999;
+    span {
+      margin: 0;
+      padding: 0;
+      color: $light;
+      font-size: $font-size-base;
+    }
+  }
+}
+
+//用于用户名显示等title性文字
+.md-item-title.item {
+  padding: 10px 0 0 0;
+  position: relative;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+  .item-thumbnail-left {
+    border: 0;
+    min-height: 70px;
+    padding-left: 70px;
+    > img:first-child {
+      width: 40px;
+      height: 40px;
+    }
+  }
+  i.md-ion-verification {
+    font-size: $font-size-small;
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    background-color: $theme-light;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 10px;
+    color: white;
+  }
+
+  p.no-clip {
+    overflow: visible;
+    white-space: normal;
+    a {
+      color: $theme-light;
+      text-decoration: none;
+    }
+  }
+
+  img {
+    max-width: 170px;
+    max-height: 170px;
+  }
+
+  .row {
+    border-top: 1px solid #ddd;
+    button {
+      color: #888;
+    }
+    }
+}
+
+//---------icon 作为 thumbnail
+.md-icon-thumbnail-left {
+  .item-thumbnail-left{
+    padding-left: 60px;
+    min-height: 60px;
+
+    &:nth-of-type(3),
+    &:nth-of-type(4),
+    &:nth-of-type(5) {
+      margin-bottom: 10px;
+    }
+    h2 {
+      margin-top: 11px;
+    }
+    i:first-child {
+      font-size: 30px;
+      color: $calm;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 40px;
+      height: 40px;
+      //background-color: $calm;
+      border-radius: 3px;
+      text-align: center;
+      padding-top: 5px;
+    }
+  }
+}
+
+//----------两端对齐内容的item项，看起来像表单----
+.md-item-edge-align {
+  padding-left: 96px;
+  position: relative;
+  h2 {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+  }
+  p {
+    text-align: right;
+    overflow: visible;
+    white-space: normal;
+  }
+}
+
+.gallery {
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+//将item中的button置于右上
+.item-button-right {
+  .item-thumbnail-left {
+    min-height: 80px;
+    padding-top: 0;
+    padding-left: $item-thumbnail-width + $item-thumbnail-margin;
+    img {
+      top: $item-thumbnail-margin + 5;
+      left: $item-thumbnail-margin + 5;
+
+    }
+  }
+}
+
+//去掉button
+.md-item-no-button {
+  padding-right: $padding-base-horizontal;
+}
+
+.md-item-avatar-square {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: $item-avatar-width + ($item-padding * 2) + 10;
+  min-height: $item-avatar-width + ($item-padding * 2) - 5;
+  > img:first-child,
+  .item-image  {
+    top: 8px;
+
+    max-width: $item-avatar-width + 10;
+    max-height: $item-avatar-height + 10;
+    border-radius: 3px;
+  }
+}
+
+.md-verify-badge {
+
+  .badge {
+    padding: 3px 6px;
+    position: absolute;
+    top: $item-avatar-height + 10;
+    left: $item-avatar-width + 10;
+    right: auto;
+  }
+}
+
+.md-item-avatar-square-left {
+  padding-left: 70px;
+  position: relative;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  height: 67px;
+  .item-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 3px;
+    position: absolute;
+    left: 10px;
+    top:8px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .badge {
+      padding: 3px 6px;
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background-color: $assertive;
+      color: white;
+    }
+  }
+
+}

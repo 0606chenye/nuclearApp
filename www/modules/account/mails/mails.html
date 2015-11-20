@@ -1,0 +1,64 @@
+<ion-view view-title="私信" name="mail-view" cache-view="false">
+    <ion-content>
+        <ion-slide-box  delegate-handle="mailTabs"
+                        slide-tabs-scrollable="false"
+                        show-pager="false"
+                        on-slide-changed="onSliderChange($index)"
+                        ion-slide-tabs
+                        current-slider="{{currentSlider}}">
+            <ion-slide  ion-slide-tab-label="收件箱">
+                <ion-scroll class="padding-top" direction="y">
+                    <div class="list">
+                        <div ng-repeat="mail in inboxMails track by mail.id">
+                            <a class="item item-light item-avatar"
+                               ng-class="{'md-no-clip': mail.active}"
+                               ng-click="setActiveMail(mail, 'inbox')">
+                                <img src="{{mail.publisherProfile}}">
+                                <h2>{{mail.publisherNickName}}</h2>
+                                <p>{{mail.content}}</p>
+                                <div>
+
+                                </div>
+                                <div class="md-button-group">
+                                    <button class="button button-calm button-clear pull-right md-button-small">
+                                        <i class="ion-trash-a md-fontsize-large"></i>
+                                    </button>
+                                    <button ng-click="setReplyMail(mail)" class="button button-calm button-clear pull-right md-button-small">
+                                        <i class="ion-reply md-fontsize-large"></i>
+                                    </button>
+                                </div>
+                            </a>
+                            <div ng-show="mail.replayMail"
+                                 click-anywhere-but-here="resetReplyMail(mail)"
+                                 class="item item-input-inset">
+                                <label class="item-input-wrapper md-bg-transparent">
+                                    <input type="text" ng-model="mail.replyContent" placeholder="回复{{mail.publisherNickName}}">
+                                </label>
+                                <button  ng-click="replyMail(mail)" class="button button-small button-calm">
+                                    发送
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </ion-scroll>
+            </ion-slide>
+            <ion-slide  ion-slide-tab-label="发件箱">
+                <ion-scroll class="padding-top" direction="y">
+                    <div class="list">
+                        <a class="item item-light item-avatar"
+                           ng-repeat="mail in outboxMails track by mail.id"
+                           ng-class="{'md-no-clip': mail.active}"
+                           ng-click="setActiveMail(mail, 'outbox')">
+                            <img ng-src="{{mail.receiverProfile}}">
+                            <h2>发送给 {{mail.receiverNickName}}</h2>
+                            <p>{{mail.content}}</p>
+                        </a>
+
+                    </div>
+
+                </ion-scroll>
+            </ion-slide>
+        </ion-slide-box>
+
+    </ion-content>
+</ion-view>

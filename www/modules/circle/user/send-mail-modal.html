@@ -1,0 +1,13 @@
+<div class="modal semi-transparent no-animation-modal">
+    <ion-content style="width: 100%;height: 40%; margin-top: 70% ;">
+        <div class="item item-input-inset">
+            <label class="item-input-wrapper md-bg-transparent">
+                <textarea style="min-height: 100px"
+                        cols="50" type="text" ng-model="user.mailContent" placeholder="给 {{user.nickName}} 发私信"></textarea>
+            </label>
+            <button class="button  button-calm" ng-click="sendMail()">
+                发送
+            </button>
+        </div>
+    </ion-content>
+</div>

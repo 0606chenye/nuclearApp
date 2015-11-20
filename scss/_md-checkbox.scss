@@ -1,0 +1,37 @@
+
+/**
+ * Checkbox
+ * --------------------------------------------------
+ */
+
+// make sure item content have enough padding on left to fit the checkbox
+.md-checkbox {
+  .item-checkbox {
+    padding-left: 25px;
+    padding-top: 2px;
+  }
+  .checkbox {
+    right: $item-padding;
+    left: 0;
+    padding-left: 0;
+  }
+
+  .checkbox input,
+  .checkbox-icon {
+    position: relative;
+    width: $checkbox-width-sm;
+    height: $checkbox-height-sm;
+    &:before {
+      position: relative;
+      top: 20%;
+    }
+  }
+
+  .checkbox input:after,
+  .checkbox-icon:after {
+    top: 55%;
+    left: 25%;
+    width: ($checkbox-width-sm / 2);
+    height: ($checkbox-width-sm / 4) - 1;
+  }
+}

@@ -1,0 +1,26 @@
+<ion-view view-title="职业角色" cache-view="false">
+    <ion-content>
+        <div class="list">
+            <ion-item class="item-divider">业主</ion-item>
+            <ion-checkbox ng-repeat="role in roles |limitTo: 2 "
+                          ng-model="role.checked"
+                          ng-checked="role.checked"
+                          ng-click="selectRole(role)">
+                {{ role.name }}
+            </ion-checkbox>
+            <ion-item class="item-divider">制造商，代理商，服务商</ion-item>
+            <ion-checkbox ng-repeat="role in roles |limitTo: -6 "
+                          ng-model="role.checked"
+                          ng-checked="role.checked"
+                          ng-click="selectRole(role)">
+                {{ role.name }}
+            </ion-checkbox>
+        </div>
+
+        <div class="padding">
+            <button ng-click="updateRole()" class="button button-block button-positive">
+                确定
+            </button>
+        </div>
+    </ion-content>
+</ion-view>

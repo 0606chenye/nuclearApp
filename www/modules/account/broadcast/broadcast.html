@@ -1,0 +1,23 @@
+<ion-view view-title="站内广播" name="broadcast-view" cache-view="false">
+    <ion-content class="padding">
+        <div class="list list-inset">
+            <label class="item item-input">
+                <textarea rows="10" cols="10"
+                          ng-model="textarea.content"
+                          ng-maxlength="150">
+                </textarea>
+            </label>
+        </div>
+
+        <h4>广播给:</h4>
+
+        <div class="row divider-light-blue text-center">
+            <md-dropdown class="col-50"  dropdown-list="companyTypes" current-value="companyType" >
+            </md-dropdown>
+            <md-dropdown class="col-50"  dropdown-list="roles" current-value="role">
+            </md-dropdown>
+        </div>
+
+        <button ng-click="broadcastMessage()" class="button button-block button-calm">发布</button>
+    </ion-content>
+</ion-view>

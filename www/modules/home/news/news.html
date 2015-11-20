@@ -1,0 +1,18 @@
+<!--<ion-view cache-view="false" view-title="新闻资讯">-->
+    <!--<ion-content>-->
+        <!--<iframe   src="{{trustSrc(url)}}" style="padding-bottom: 0;padding-top: 0; overflow:auto; -webkit-overflow-scrolling:touch">-->
+        <!--</iframe>-->
+    <!--</ion-content>-->
+<!--</ion-view>-->
+
+<ion-view cache-view="false" view-title="新闻资讯">
+    <ion-content>
+        <!--<div style="height: 100%">-->
+            <!--<iframe   src="{{trustSrc(url)}}" style="padding-bottom: 0;padding-top: 0;">-->
+            <!--</iframe>-->
+        <!--</div>-->
+
+        <div ng-bind-html="content"></div>
+
+    </ion-content>
+</ion-view>

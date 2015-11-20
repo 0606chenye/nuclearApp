@@ -1,0 +1,57 @@
+<ion-list class="md-margin-top" ng-if="listShow">
+    <!--<pre>itemStyle={{itemStyle}}</pre>-->
+    <ion-item class="item"
+              ng-class="{'item-button-right': canDelete(), 'item-button-right md-item-no-button': !canDelete()}"
+              ng-repeat="item in items track by item.id" ng-style="{{itemStyle}}" >
+
+
+        <div class="item-thumbnail-left"  ng-click="goDetailPage(item)" >
+            <div class="md-img-mask item-image md-image-rect">
+                <img class="" ng-src="{{item.logo}}">
+            </div>
+            <h2 class="md-thumbnail-title-full positive" style="margin-bottom: 8px;">{{item.name}}</h2>
+            <span ng-if="showTag(item.tags, '工业产品')" class="md-industrial">工业产品</span>
+            <span ng-if="showTag(item.tags, '核电产品')" class="md-indus-nuclear">核电产品</span>
+            <span ng-if="showTag(item.tags, '核级产品')" class="md-nuclear">核级产品</span>
+            <span ng-if="showTag(item.tags, '技术文档')" class="md-docs">技术文档</span>
+
+            <!--<span  class="md-docs">技术文档</span>-->
+            <!--<span  class="md-industrial">工业产品</span>-->
+            <!--<span  class="md-indus-nuclear">核电产品</span>-->
+            <!--<span  class="md-nuclear">核级产品</span>-->
+            <p class="paragraph-area" ng-bind="displayDescription(item)">
+                {{item.description}}
+            </p>
+        </div>
+        <button ng-if="canDelete()" ng-click="deleteItem(item)"
+                class="button button-clear button-stable button-small md-align-top-right" >
+            取消关注
+        </button>
+    </ion-item>
+</ion-list>
+
+<ion-list ng-if="squareShow">
+    <div class="row gallery">
+        <div class="col-50"
+             ng-repeat="item in items track by item.id"
+             ng-click="goDetailPage(item)">
+            <div class="card md-card-clickable">
+                <div class="md-tag"><span>热销</span></div><!-- Badge on corner -->
+                <a class="item">
+                    <div class="item item-image">
+                        <img  ng-src="{{item.logo}}">
+                    </div>
+                    <div class="detailed-title"><p>{{item.name}}</p></div>
+                </a>
+            </div>
+        </div>
+    </div>
+</ion-list>
+
+<ion-infinite-scroll
+        ng-if="moreDataCanBeLoaded"
+        on-infinite="loadMore()"
+        distance="1%"
+        immediate-check="true">
+</ion-infinite-scroll>
+

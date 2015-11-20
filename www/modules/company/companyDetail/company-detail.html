@@ -1,0 +1,195 @@
+<ion-view  view-title="{{::company.name}}">
+    <ion-content scroll="false">
+        <!--<div class="row padding">-->
+            <!--<div class="col-25 padding-right">-->
+                <!--<img ng-src="{{::company.logo}}" width="100%"/>-->
+            <!--</div>-->
+            <!--<div class="col-50 padding-left">-->
+                <!--<h4>{{::company.name}}</h4>-->
+                <!--<p><i class="ion-star calm"-->
+                            <!--ng-repeat="i in ShowStars.getCompleteStarNumber(company.credit) track by $index"></i><i ng-show="ShowStars.haveHalfStar(company.credit)" class="ion-ios-star-half calm"></i>-->
+                <!--</p>-->
+                <!--<p class="calm"><span class="dark">企业客服:</span>-->
+                    <!--<a href="#" class="md-link-theme">屈永佳  |  销售</a>-->
+                <!--</p>-->
+            <!--</div>-->
+            <!--<div class="col-25">-->
+                <!--<a href="#" class="md-link-theme">-->
+                    <!--<div class="calm-box-2-line-text" ng-click="likeCompany()">-->
+                        <!--<p>点赞</p>-->
+                        <!--<p>{{company.likeCount}}</p>-->
+                    <!--</div>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</div>-->
+        <ion-slide-box id="company-details" delegate-handle="companyTabs"
+                        slide-tabs-scrollable="false"  show-pager="false" ion-slide-tabs bar-fix-top="false"
+                       style="margin-top: 2px;">
+            <ion-slide  ion-slide-tab-label="基本信息" >
+                <ion-scroll class="padding" direction="y">
+                    <div class="padding md-min-height">
+                        <p class="md-row-title-left padding-horizontal">
+                            <span class="padding-right">存续时间：</span>{{::yearDiff}} {{::monthDiff}}
+                        </p>
+                    </div>
+                    <div class="padding md-lightest-bg md-min-height" >
+                        <p class="md-row-title-left padding-horizontal">
+                            <span class="padding-right">经营地址：</span>{{::company.address}}
+                        </p>
+                    </div>
+                    <div class="padding md-min-height">
+                        <p class="md-row-title-left padding-horizontal">
+                            <span class="padding-right">注册资本：</span>{{::company.capital}}
+                        </p>
+                    </div>
+                    <div class="padding md-lightest-bg md-min-height">
+                        <p class="md-row-title-left padding-horizontal">
+                            <span class="padding-right">涉及行业：</span>{{::company.industry}}
+                        </p>
+                    </div>
+                    <div class="padding md-min-height">
+                        <p class="md-row-title-left padding-horizontal">
+                            <span class="padding-right">公司概况：</span>{{::company.description}}
+                        </p>
+                    </div>
+                    <div class="padding text-center md-lightest-bg">
+                        企业图片展示
+                    </div>
+                    <a class="item md-border-none">
+                        <ion-scroll direction="x" on-scroll="onImageSliderScroll()" >
+                            <img ng-repeat="image in images track by $index" ng-src="{{image}}" ng-click="showImages($index)" class="image-list-thumb"/>
+                        </ion-scroll>
+                    </a>
+                </ion-scroll>
+
+            </ion-slide>
+            <ion-slide ion-slide-tab-label="产品">
+                <ion-scroll>
+                    <md-item-list
+                            items="products"
+                            item-style="{'height':'80px'}"
+                            which-state-to-go="tab.company-product-detail/:id">
+                    </md-item-list>
+                </ion-scroll>
+
+            </ion-slide>
+            <ion-slide ion-slide-tab-label="认证信息">
+                <ion-scroll>
+                    <div id="verification" class="padding-horizontal padding-bottom">
+                        <h5 class="md-lightest-bg padding">技术能力</h5>
+                        <div class="row">
+                            <p class="col-50 padding-right" ng-class="::{'calm': hasLicence('核安全设备设计许可证')}">核安全设备设计许可证</p>
+                            <p class="col-50" ng-class="::{'calm': hasLicence('核安全设备制造许可证')}">核安全设备制造许可证</p>
+                        </div>
+                        <div class="row">
+                            <p class="col-50 padding-right" ng-class="::{'calm': hasLicence('特种设备许可证')}">特种设备许可证</p>
+                            <p class="col-50" ng-class="::{'calm': hasLicence('安全生产许可证')}">安全生产许可证</p>
+                        </div>
+                        <div class="row">
+                            <p class="col-50 padding-right" ng-class="::{'calm': hasLicence('危险品许可证')}">危险品许可证</p>
+                        </div>
+
+
+                        <h5 class="md-lightest-bg padding">质保能力</h5>
+                        <div class="row">
+                            <p class="col-33 padding-right" ng-class="::{'calm': hasCertificate('ISO9001体系(QMS)认证')}">9001</p>
+                            <p class="col-33 padding-right" ng-class="::{'calm': hasCertificate('ISO14001体系(EMS)认证')}">14001</p>
+                            <p class="col-33 padding-right" ng-class="::{'calm': hasCertificate('OHSAS18001体系(OHSAS)认证')}">18001</p>
+                        </div>
+                        <!--<div class="row">-->
+                            <!--<p class="col-50 padding-right" ng-class="::{'calm': hasCertificate('OHSAS18001体系(OHSAS)认证')}">OHSAS18001体系(OHSAS)认证</p>-->
+                            <!--<p class="col-50" ng-class="::{'calm': hasCertificate('OHSAS18001体系(OHSAS)认证')}">OHSAS18001体系(OHSAS)认证</p>-->
+                        <!--</div>-->
+
+
+
+
+                        <h5 class="md-lightest-bg padding">合格供应商</h5>
+                        <div class="row">
+                            <p class="col-33 padding-right" ng-class="::{'calm': hasAuthentication('中核集团')}">中核集团</p>
+                            <p class="col-33 padding-right" ng-class="::{'calm': hasAuthentication('中广核集团')}">中广核集团</p>
+                            <p class="col-33" ng-class="::{'calm': hasAuthentication('国电投集团')}">国电投集团</p>
+                        </div>
+                        <div class="row">
+                            <p class="col-33 padding-right" ng-class="::{'calm': hasAuthentication('中核建集团')}">中核建集团</p>
+                            <p class="col-33 padding-right" ng-class="::{'calm': hasAuthentication('华能集团')}">华能集团</p>
+                            <p class="col-33" ng-class="::{'calm': hasAuthentication('大唐集团')}">大唐集团</p>
+                        </div>
+
+
+
+
+
+                        <!--<h5 class="md-lightest-bg padding">其他资质</h5>-->
+                        <!--<p class="padding-horizontal"><a class="md-link-theme" href="#">其他资质1</a></p>-->
+                        <!--<p class="padding-horizontal"><a class="md-link-theme" href="#">其他资质2</a></p>-->
+                        <!--<p class="padding-horizontal">其他资质3</p>-->
+
+                        <p class="text-center padding-top" style="font-size: 12px">以上资质均有核品汇独立对有效性和真实性进行确认</p>
+
+                    </div>
+
+                </ion-scroll>
+
+            </ion-slide>
+            <ion-slide  ion-slide-tab-label="业绩证明">
+                <ion-scroll >
+                    <div class="padding">
+                        <!--<div class="row divider-light-blue text-center">-->
+                            <!--<md-dropdown class="col-50"  dropdown-list="providerTypes" current-value="providerType" >-->
+                            <!--</md-dropdown>-->
+                            <!--<md-dropdown class="col-50"  dropdown-list="providerTypes" current-value="providerType" >-->
+                            <!--</md-dropdown>-->
+                        <!--</div>-->
+
+                        <div ng-repeat="group in ::contracts">
+                            <div class="row padding-horizontal">
+                                <div class="col-80">
+                                    <h4 class="calm">{{::group[0].buyerGroup}}</h4>
+                                </div>
+                                <div class="col-20">
+                                    <p class="text-right md-margin-none md-margin-top">共{{::group.length}}条</p>
+                                </div>
+                            </div>
+
+
+                            <div class="padding md-lightest-bg" ng-repeat="contract in ::group ">
+                                <p class="positive">{{::contract.buyer}} :</p>
+                                <p class="md-row-title-right" >
+                                    {{::contract.title}}
+                                    <span class="padding-left calm">{{::contract.year}}</span>
+                                </p>
+                            </div>
+
+
+                            <div class="padding md-lightest-bg">
+                                &nbsp;
+                            </div>
+
+                            <div class="row">
+                                <div class="col-80">
+                                    &nbsp;
+                                </div>
+                                <div class="col-20">
+                                    <!--<p class="text-right">更多…</p>-->
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                            <p class="text-center padding-top" style="font-size:12px; color: #ddd;">以上资质均有核品汇独立对有效性和真实性进行确认</p>
+                        </div>
+                    </div>
+                </ion-scroll>
+
+            </ion-slide>
+        </ion-slide-box>
+
+
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,61 @@
+<ion-view view-title="{{nickName}}" cache-view="false" hide-tabs='true'>
+
+    <ion-content class="has-footer" overflow-scroll="true" delegate-handle="conversationContent">
+        <ion-refresher on-refresh="getElderMessages()"></ion-refresher>
+
+        <div class="list">
+            <div ng-repeat="message in conversation track by $index">
+                <div class="md-message-time">
+                    <span>{{Common.getTimeLapse(message.date)}}</span>
+                </div>
+                <div class="md-message"
+                     ng-class="{'md-avatar-right': isSentByMe(message), 'md-avatar-left': !isSentByMe(message)}">
+                    <div class="item-image">
+                        <img ng-src="{{message.profile}}"/>
+                    </div>
+                    <p>
+                        {{message.message}}
+                    </p>
+                </div>
+            </div>
+
+
+            <!--<div class="md-message md-avatar-right">-->
+                <!--<div class="item-image">-->
+                    <!--<img src="img/pic2.jpg"/>-->
+                <!--</div>-->
+                <!--<p>习近平说：任何国家和地区都不应成为腐败分子和腐败资金的“避风港”，不应成为他们的“避罪天堂”。-->
+                <!--</p>-->
+            <!--</div>-->
+
+
+            <!--<div class="md-message-time">-->
+                <!--<span>今天 10:42</span>-->
+            <!--</div>-->
+
+            <!--<div class="md-message md-avatar-right">-->
+                <!--<div class="item-image">-->
+                    <!--<img src="img/pic2.jpg"/>-->
+                <!--</div>-->
+                <!--<p>习近平指出：南海诸岛自古以来就是中国领土，这是老祖宗留下的。任何人要侵犯中国的主权和相关权益，中国人民都不会答应。中国在南-->
+                    <!--海采取的有关行动，是维护自身领土主权的正当反应。对本国领土范围外的土地提出主权要求，那是扩张主义。中国从未那么做过，不应当-->
+                    <!--受到怀疑和指责。-->
+                <!--</p>-->
+            <!--</div>-->
+
+            <!--<div class="md-message-time">-->
+                <!--<span>10月4日 10:42</span>-->
+            <!--</div>-->
+
+        </div>
+
+    </ion-content>
+    <div class="bar bar-footer item-input-inset">
+        <label class="item-input-wrapper md-bg-transparent" style="border-bottom: 1px solid #4689D8;border-radius: 0;   ">
+            <input type="text" maxlength="120" ng-model="messageInput">
+        </label>
+        <button class="button button-calm" ng-click="sendMessage()">
+            发送
+        </button>
+    </div>
+</ion-view>

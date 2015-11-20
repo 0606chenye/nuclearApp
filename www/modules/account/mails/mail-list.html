@@ -1,0 +1,28 @@
+<ion-view view-title="私信" name="mail-view" cache-view="false">
+    <ion-content>
+        <div class="list">
+
+            <!--<a class="item md-item-avatar-square-left" href="#">-->
+                <!--<div class="item-image">-->
+                    <!--<img src="img/pic1.jpg">-->
+                    <!--<div class="badge">1</div>-->
+                <!--</div>-->
+
+                <!--<h2 style="">王君如123-->
+                    <!--<span class="pull-right" style="font-size: 12px; line-height: 18px; color: #c2c3c4">11月12日</span></h2>-->
+                <!--<p style="margin-right: 62px">请测试代码效果，经济据了解来解决，哈哈哈哈哈哈哈哈哈哈哈哈</p>-->
+            <!--</a>-->
+
+            <a class="item md-item-avatar-square-left" ng-repeat="con in conversations.slice().reverse() track by con.id" on-tap="goConversationById(con)">
+                <div class="item-image">
+                    <img ng-src="{{con.profile}}">
+                    <div class="badge" ng-if="con.unreadCount > 0">{{con.unreadCount}}</div>
+                </div>
+
+                <h2 style="">{{con.nickName}}
+                    <span class="pull-right" style="font-size: 12px; line-height: 18px; color: #c2c3c4">{{Common.getTimeLapse(con.date)}}</span></h2>
+                <p style="margin-right: 62px">{{con.lastMessage}}</p>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

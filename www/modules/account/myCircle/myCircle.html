@@ -1,0 +1,95 @@
+<ion-view view-title="我的行业圈" hide-nav-bar="false"  cache-view="false" id="circle-list">
+    <div class="bar bar-header bar-positive">
+        <!--<button class="button icon ion-navicon"></button>-->
+        <h1 class="title">我的行业圈</h1>
+    </div>
+    <ion-content style="padding-bottom: 49px;background-color: #eee;">
+        <div style="padding-bottom: 49px;">
+
+
+            <div class="padding-bottom" ng-repeat="feed in ctrl.feeds">
+                <ion-item class="md-item-title">
+                    <a class="md-link-theme" ng-click="goUserPage(feed)">
+
+                        <div class="item item-thumbnail-left">
+                            <img ng-src="{{feed.creatorProfile}}">
+                            <button class="button button-calm button-clear pull-right md-button-small"
+                                    ng-click="deleteFeed(feed,$event); ">
+                                <i class="ion-trash-a md-fontsize-large"></i>
+                            </button>
+                            <i class="ion-social-vimeo md-ion-verification"></i>
+                            <h2>{{feed.creatorNickName}}</h2>
+                            <h6 class="calm">{{feed.companyName}}</h6>
+                        </div>
+
+                    </a>
+                    <div class="padding">
+                        <p class="no-clip">{{feed.content}}</p>
+
+                        <!--多张图，使用md-clip-mask 来显示小图-->
+                        <div ng-if="feed.images.length>1" class="md-clip-mask" ng-click="showImages($index, feed.images)" ng-repeat="image in feed.images track by $index">
+                            <img ng-src="{{image}}">
+                        </div>
+
+                        <!--只有一张图的情况-->
+                        <div ng-if="feed.images.length==1" ng-click="showImages(0,feed.images)">
+                            <img ng-src="{{feed.images[0]}}">
+                        </div>
+
+                    </div>
+
+                </ion-item>
+
+                <!--<ion-list class="md-no-clip" ng-show="feed.showComment">-->
+                    <!--<div class="item item-divider">-->
+                        <!--评论-->
+                    <!--</div>-->
+                    <!--<div class="item item-avatar" ng-click="replyWhichComment(comment)" ng-repeat="comment in feed.comments">-->
+                        <!--<img ng-src="{{comment.profile}}"/>-->
+                        <!--<h2><a ng-click="selectReplyWhom(comment.nickName)" class="md-link-theme">{{comment.nickName}}</a> 回复 {{comment.cNickName}}</h2>-->
+                        <!--<p>{{comment.content}}</p>-->
+                    <!--</div>-->
+                <!--</ion-list>-->
+
+                <!--<div class="item  row divider-light text-center" >-->
+                    <!--<div class="col-50">-->
+                        <!--<button class="button md-button-small button-clear button-stable" ng-click="showComment(feed)">-->
+                            <!--<i class="icon ion-chatbox-working"></i> {{feed.commentCount}}-->
+                        <!--</button>-->
+                    <!--</div>-->
+                    <!--<div class="col-50">-->
+                        <!--<button class="button md-button-small button-clear button-stable" ng-click="toggleLike(feed)">-->
+                            <!--<i class="icon ion-thumbsup" ng-class="{'calm': feed.hasLiked}"></i> {{feed.likerCount}}-->
+                        <!--</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="item md-padding-none text-right" >-->
+                <!--<a href="#" ng-click="showMoreComments()" class="button button-clear button-calm button-small"><i class="ion-chevron-down"></i> 展开评论</a>-->
+                <!--</div>-->
+                <!--<div class="item md-padding-none text-right">-->
+                <!--<a href="#" ng-click="showlessComments()" class="button button-clear button-calm button-small"><i class="ion-chevron-up"></i> 收起评论</a>-->
+                <!--</div>-->
+                <!--<div class="list" ng-if="feed.showComment">-->
+                    <!--<div class="item item-input-inset">-->
+                        <!--<label class="item-input-wrapper md-bg-transparent">-->
+                            <!--<input type="text" placeholder="回复{{replyWhom}}" ng-model="feed.commentInput">-->
+                        <!--</label>-->
+                        <!--<button  ng-click="postComment(feed)" class="button button-small button-calm">-->
+                            <!--发送-->
+                        <!--</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+
+
+
+            <ion-infinite-scroll
+                    ng-if="moreDataCanBeLoaded"
+                    on-infinite="loadMore()"
+                    distance="5%">
+            </ion-infinite-scroll>
+
+        </div>
+    </ion-content>
+</ion-view>

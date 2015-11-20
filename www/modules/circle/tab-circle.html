@@ -1,0 +1,68 @@
+<ion-view hide-nav-bar="true" view-title="市场情报" id="circle-list">
+    <div class="bar bar-header bar-positive">
+        <!--<button class="button icon ion-navicon"></button>-->
+        <h1 class="title">行业圈</h1>
+        <button ng-click="goPostFeed()" class="button button-clear icon ion-compose"></button>
+    </div>
+    <ion-content ng-class="{'md-android-has-header': !isIos,  'md-ios-has-header': isIos}"
+            overflow-scroll="false"  style="padding-bottom: 49px;background-color: #eee;">
+        <ion-refresher on-refresh="doRefresh()"></ion-refresher>
+        <div style="padding-bottom: 49px;">
+
+            <div class="list card"   ng-repeat="feed in ctrl.feeds"
+                 style="margin-left: 0; margin-right: 0; margin-bottom: 10px">
+
+                <div class="item item-avatar md-item-avatar-square md-verify-badge" >
+                    <a ui-sref="tab.user({id:feed.creatorId})"><img class="item-image" ng-src="{{::feed.creatorProfile}}"></a>
+
+                    <!--<div class="badge badge-calm">V</div>-->
+                    <h2 style="padding-top: 5px"><a  ui-sref="tab.user({id:feed.creatorId})" class="md-link-theme padding-right">{{::feed.creatorNickName}}</a>
+                        <span class="pull-right" style="font-size: 12px; line-height: 18px; color: #c2c3c4">{{getTimeLapse(feed)}}</span></h2>
+
+                    <p style="font-size: 12px; color: #c2c3c4">{{::feed.companyName}} </p>
+
+                </div>
+
+                <div class="item item-body">
+
+                    <p ng-click="goComment(feed)" style="margin-top: 0;">
+                        {{::feed.content}}
+                    </p>
+                    <!--<div><img class="md-half-image" src="img/pic1.jpg"></div>-->
+                    <div ng-if="feed.images.length>1" class="md-clip-mask" ng-repeat="image in feed.images track by $index">
+                        <img ng-click="showImages($index, feed.images)" ng-src="{{::image}}">
+                    </div>
+
+                    <!--只有一张图的情况-->
+                    <div ng-if="feed.images.length==1" class="md-clip-mask-large">
+                        <img ng-click="showImages(0,feed.images)" ng-src="{{::feed.images[0]}}">
+                    </div>
+
+                </div>
+
+                <div class="item  row divider-light text-center" >
+                    <div class="col-50">
+                        <button class="button md-button-small button-clear button-stable" ng-click="goComment(feed)">
+                            <i class="icon ion-chatbox-working"></i> {{::feed.commentCount}}
+                        </button>
+                    </div>
+                    <div class="col-50">
+                        <button class="button md-button-small button-clear button-stable" ng-click="toggleLike(feed)">
+                            <i class="icon ion-thumbsup" ng-class="{'calm': feed.hasLiked}"></i> {{feed.likerCount}}
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <ion-infinite-scroll
+                    ng-if="moreDataCanBeLoaded"
+                    on-infinite="loadMore()"
+                    distance="5%">
+            </ion-infinite-scroll>
+
+        </div>
+    </ion-content>
+</ion-view>

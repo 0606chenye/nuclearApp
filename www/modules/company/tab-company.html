@@ -1,0 +1,211 @@
+<ion-view hide-nav-bar="true" ng-cloak  id="company-list">
+    <div class="bar bar-header bar-positive">
+        <h1 class="title">企业库</h1>
+    </div>
+    <ion-content ng-class="{'md-android-has-header': !isIos,  'md-ios-has-header': isIos}"
+            overflow-scroll="true" scrollbar-y="true">
+        <!--<div class="bar bar-header item-input-inset">-->
+        <!--<label class="item-input-wrapper">-->
+        <!--<i class="icon ion-ios-search placeholder-icon"></i>-->
+        <!--<input type="search" placeholder="Search">-->
+        <!--</label>-->
+        <!--<button class="button button-clear">-->
+        <!--取消-->
+        <!--</button>-->
+        <!--</div>-->
+        <!--<div class="row">-->
+        <!--<button class="button md-button-small button-clear button-calm col-25">-->
+        <!--地图模式-->
+        <!--</button>-->
+
+        <pre ng-bind="getScrollPostion()"></pre>
+        <div id="even-filter">
+            <!--<md-dropdown-->
+            <!--dropdown-list="domains"-->
+            <!--current-value="ctrl.domain"-->
+            <!--on-value-changed="filterChanged"-->
+            <!--init-display="主营业务"-->
+            <!--button-style="{'width':'82px'}">-->
+            <!--</md-dropdown>-->
+            <!--<md-dropdown-->
+            <!--dropdown-list="Config.getAuthGroupTypes()"-->
+            <!--current-value="ctrl.authGroupType"-->
+            <!--on-value-changed="filterChanged"-->
+            <!--init-display="合格供方"-->
+            <!--button-style="{'width':'82px'}">-->
+            <!--</md-dropdown>-->
+            <md-select-modal-button
+                    style="margin-left: 2%"
+                    items="{{domains}}"
+                    button-display-fn="getDomainDisplay()"
+                    select-item-fn="selectDomain">
+            </md-select-modal-button>
+            <md-select-modal-button
+                    items="{{Config.getAuthGroupTypes()}}"
+                    button-display-fn="getAuthGroupDisplay()"
+                    select-item-fn="selectAuthGroup">
+            </md-select-modal-button>
+            <!--<button class="button button-small md-button-calm-light"-->
+            <!--style="color: #007aff;font-size: 14px; width: 82px"-->
+            <!--ng-click="openSelectProvinceModal()">{{getProvinceDisplay()}}-->
+            <!--<i class="ion-arrow-down-b" style="font-size: 1px"></i>-->
+            <!--&lt;!&ndash;<i ng-show="showDropdown" class="icon ion-arrow-up-b"></i>&ndash;&gt;-->
+            <!--</button>-->
+            <!--<button class="button button-small md-button-calm-light"-->
+            <!--style="color: #007aff;font-size: 14px; width: 82px"-->
+            <!--ng-click="openSelectProvinceModal()">{{getProvinceDisplay()}}-->
+            <!--<i class="ion-arrow-down-b" style="font-size: 1px"></i>-->
+            <!--&lt;!&ndash;<i ng-show="showDropdown" class="icon ion-arrow-up-b"></i>&ndash;&gt;-->
+            <!--</button>-->
+
+            <md-select-modal-button
+                    items="{{provinces}}"
+                    button-display-fn="getProvinceDisplay()"
+                    select-item-fn="selectProvince">
+            </md-select-modal-button>
+            <md-select-modal-button
+                    style="margin-right: 2%"
+                    items="{{Config.getOrderTypes()}}"
+                    button-display-fn="getOrderTypeDisplay()"
+                    select-item-fn="selectOrderType">
+            </md-select-modal-button>
+            <!--<button class="button button-small md-button-calm-light"-->
+            <!--style="color: #007aff;font-size: 14px; width: 82px"-->
+            <!--ng-click="openSelectProvinceModal()">{{getProvinceDisplay()}}-->
+            <!--<i class="ion-arrow-down-b" style="font-size: 1px"></i>-->
+            <!--&lt;!&ndash;<i ng-show="showDropdown" class="icon ion-arrow-up-b"></i>&ndash;&gt;-->
+            <!--</button>-->
+            <!--<button class="button button-small md-button-calm-light"-->
+            <!--style="color: #007aff;font-size: 14px; width: 82px"-->
+            <!--ng-click="openSelectProvinceModal()">{{getProvinceDisplay()}}-->
+            <!--<i class="ion-arrow-down-b" style="font-size: 1px"></i>-->
+            <!--&lt;!&ndash;<i ng-show="showDropdown" class="icon ion-arrow-up-b"></i>&ndash;&gt;-->
+            <!--</button>-->
+            <!--<md-dropdown-->
+            <!--dropdown-list="Config.getOrderTypes()"-->
+            <!--current-value="ctrl.orderType"-->
+            <!--on-value-changed="filterChanged"-->
+            <!--init-display="排序"-->
+            <!--button-style="{'width':'82px'}">-->
+            <!--</md-dropdown>-->
+        </div>
+        <ion-scroll direction="y">
+            <ion-refresher on-refresh="doRefresh()"></ion-refresher>
+
+            <ion-list class="md-thumbnail-complex">
+                <div ng-repeat="company in companies track by company.id">
+                    <ion-item  class="item item-thumbnail-left" style="border: 0" >
+                        <a href="#">
+                            <div class="left">
+                                <div class="md-logo-mask">
+                                    <!--<img src="img/logo-intel.png" alt=""/>-->
+                                    <img ng-src="{{company.logo}}">
+                                </div>
+                                <span>{{company.type}}</span>
+                            </div>
+                        </a>
+
+                        <div class="main">
+                            <a ng-click="goCompanyById(company.id)">
+                                <h2>
+                                    {{company.name || '无'}}
+                                </h2>
+                                <!--<i class="ion-star calm"></i> <i class="ion-star calm"></i> <i class="ion-star calm"></i> <i class="ion-star calm"></i> <i class="ion-star calm"></i>-->
+                                <i class="ion-star calm"
+                                   ng-repeat="i in getCompleteStarNumber(company.credit) track by $index"></i><i ng-show="haveHalfStar(company.credit)" class="ion-ios-star-half calm"></i>
+                                <p>{{company.brief || '无'}}</p>
+                            </a>
+                            <button style="margin-top: -1px" ng-if="!company.favorited"
+                                    ng-click="addToFavorites(company)"
+                                    class="button button-outline button-calm md-button-small">关注</button>
+                            <button style="margin-top: -3px" ng-if="company.favorited"
+                                    ng-click="removeFavorites(company)"
+                                    class="button button-clear md-button-small">已关注</button>
+                            <button class="button button-clear md-button-small"
+                                    ng-click="likeCompany(company)">
+                                <i class="icon ion-thumbsup" ng-class="{'calm': company.hasLiked}" style="letter-spacing: 5px" ></i>
+                                {{company.likeCount || 0}}
+                            </button>
+                        </div>
+
+                        <!--<div class="footer-note">-->
+                        <!--<a>-->
+                        <!--<p class="calm"><span>最新动态:</span>{{company.latestFeed.content || '无'}}<span>{{company.latestFeed.publishDate || '无'}}</span></p>-->
+                        <!--</a>-->
+                        <!--</div>-->
+
+                    </ion-item>
+                    <div style="border-bottom: 1px solid #eeeeee;
+                    margin: 2px 12px 2px 10px;"></div>
+                </div>
+            </ion-list>
+            <ion-infinite-scroll
+                    ng-if="moreDataCanBeLoaded"
+                    on-infinite="loadMore()"
+                    distance="5%">
+            </ion-infinite-scroll>
+        </ion-scroll>
+
+        <!--<div class="col-50 col-offset-25 row button-track" ng-click="latestOrMost()">-->
+
+        <!--<button class="col-50 button md-button-small" ng-class="{buttonVisible: !showLatest, buttonInvisible: showLatest}">最新加入</button>-->
+        <!--<button class="col-50 button md-button-small" ng-class="{buttonVisible: showLatest, buttonInvisible: !showLatest}">关注最多</button>-->
+
+        <!--</div>-->
+
+        <!--<button class="button md-button-small button-clear button-calm col-25">-->
+        <!--我的关注-->
+        <!--</button>-->
+        <!--</div>-->
+
+
+
+
+
+        <!--<ion-scroll scrollbar-y="false">-->
+        <!--<ion-list class="md-thumbnail-complex">-->
+        <!--<ion-item  class="item item-thumbnail-left" collection-repeat="company in companies track by company.id">-->
+        <!--<a href="#">-->
+        <!--<div class="left">-->
+        <!--<div class="md-logo-mask">-->
+        <!--&lt;!&ndash;<img src="img/logo-intel.png" alt=""/>&ndash;&gt;-->
+        <!--<img ng-src="{{company.logo}}">-->
+        <!--</div>-->
+        <!--<span>{{company.type}}</span>-->
+        <!--</div>-->
+        <!--</a>-->
+
+        <!--<div class="main">-->
+        <!--<a ng-click="goCompanyById(company.id)">-->
+        <!--<h2>111111111111111111111111111111111111111-->
+        <!--{{company.name || '无'}}-->
+        <!--</h2>-->
+        <!--<i class="ion-star calm"-->
+        <!--ng-repeat="i in getCompleteStarNumber(company.credit) track by $index"></i><i ng-show="haveHalfStar(company.credit)" class="ion-ios-star-half calm"></i>-->
+        <!--<p>{{company.description || '无'}}</p>-->
+        <!--</a>-->
+        <!--<button ng-show="!company.favorited"-->
+        <!--ng-click="addToFavorites(company)"-->
+        <!--class="button button-outline button-calm md-button-small">收藏</button>-->
+        <!--<button ng-show="company.favorited" class="button button-clear md-button-small">已收藏</button>-->
+        <!--<button class="button button-clear button-calm md-button-small"><i class="icon ion-thumbsup"></i>12</button>-->
+        <!--</div>-->
+
+        <!--<div class="footer-note">-->
+        <!--<a>-->
+        <!--<p class="calm"><span>最新动态:</span>{{company.latestFeed.content || '无'}}<span>{{company.latestFeed.publishDate || '无'}}</span></p>-->
+        <!--</a>-->
+        <!--</div>-->
+        <!--</ion-item>-->
+        <!--</ion-list>-->
+        <!--<ion-infinite-scroll-->
+        <!--ng-if="moreDataCanBeLoaded"-->
+        <!--on-infinite="loadMore()"-->
+        <!--distance="5%">-->
+        <!--</ion-infinite-scroll>-->
+        <!--</ion-scroll>-->
+    </ion-content>
+    <a ng-click="scrollTop()" class="button button-calm button-outline  light-bg md-back-top">
+        <i class="ion-arrow-up-c"></i><span>顶部</span>
+    </a>
+</ion-view>

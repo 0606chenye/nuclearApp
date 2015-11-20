@@ -1,0 +1,62 @@
+<ion-view view-title="产品列表">
+    <!--<ion-nav-buttons side="right" >-->
+        <!--<button ng-click="mdItemListControl.changeShowType()" class="button button-icon button-clear ion-grid">-->
+        <!--</button>-->
+    <!--</ion-nav-buttons>-->
+
+    <ion-content>
+
+
+
+        <div  id="filter">
+            <div class="md-position-re md-checkbox">
+                <div class="item-checkbox checkbox-calm ">
+                    <label class="checkbox">
+                        <input type="checkbox"
+                               ng-model="ctrl.hasServiceHistory"
+                               ng-click="filterChanged()">
+                    </label>
+                    有供货业绩的产品
+                </div>
+            </div>
+            <md-select-modal-button
+                    items="{{Config.getAuthGroupTypes()}}"
+                    button-display-fn="getAuthGroupDisplay()"
+                    select-item-fn="selectAuthGroup">
+            </md-select-modal-button>
+            <md-select-modal-button
+                    items="{{Config.getBrandTypes()}}"
+                    button-display-fn="getBrandDisplay()"
+                    select-item-fn="selectBrand">
+            </md-select-modal-button>
+            <!--<md-dropdown-->
+                    <!--dropdown-list="ctrl.authGroupTypes"-->
+                    <!--current-value="ctrl.authGroupType"-->
+                    <!--on-value-changed="filterChanged"-->
+                    <!--init-display="合格供应商">-->
+            <!--</md-dropdown>-->
+            <!--<md-dropdown-->
+                    <!--dropdown-list="ctrl.brandTypes"-->
+                    <!--current-value="ctrl.brandType"-->
+                    <!--on-value-changed="filterChanged"-->
+                    <!--init-display="供货性质">-->
+            <!--</md-dropdown>-->
+        </div>
+
+        <ion-scroll >
+            <md-item-list id="product-list"
+                    items="ctrl.products"
+                          item-style="{'height':'80px'}"
+                          which-state-to-go="tab.product-detail/:id"
+                          control="mdItemListControl"
+                          on-load-more="loadData">
+            </md-item-list>
+        </ion-scroll>
+
+
+
+
+
+    </ion-content>
+
+</ion-view>

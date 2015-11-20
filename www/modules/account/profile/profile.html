@@ -1,0 +1,55 @@
+<ion-view view-title="个人信息" cache-view="false" name="profile-view">
+    <ion-content style="background-color: #eeeeee">
+        <div class="list md-bottom-shadow md-margin-top">
+            <div md-upload-qiniu on-upload-win="updateThumbNail" single="true"
+                 class="item item-light item-thumbnail-right" style="min-height: 90px;">
+                <img style="border-radius: 10px; max-width: 70px; max-height: 70px" ng-src="{{thumbNail}}">
+                <h2 style="position: relative; top:25px;">头像</h2>
+            </div>
+            <a ui-sref="tab.nickName" class="item md-item-edge-align">
+                <h2>昵称</h2>
+                <p>{{user.nickName || '未知'}}</p>
+            </a>
+            <!--<div class="item md-item-edge-align">-->
+                <!--<h2>认证信息</h2>-->
+                <!--<p>{{user.authInfo || '未知'}}</p>-->
+            <!--</div>-->
+            <div ui-sref="tab.companyName" class="item md-item-edge-align">
+                <h2>所属公司</h2>
+                <p>{{user.companyName || '未知'}}</p>
+            </div>
+            <div ui-sref="tab.role" class="item md-item-edge-align">
+                <h2>职业角色</h2>
+                <p>{{user.role}}</p>
+            </div>
+            <div ui-sref="tab.domain" class="item md-item-edge-align">
+                <h2>从事领域</h2>
+                <p>{{user.businessDomain}}</p>
+            </div>
+        </div>
+
+        <div class="list md-bottom-shadow">
+            <div ui-sref="tab.gender" class="item md-item-edge-align">
+                <h2>性别</h2>
+                <p>{{user.gender.name || '未知'}}</p>
+            </div>
+            <div ui-sref="tab.region" class="item md-item-edge-align">
+                <h2>地区</h2>
+                <p>{{user.city || '未知'}}</p>
+            </div>
+            <div ui-sref="tab.signature" class="item md-item-edge-align">
+                <h2>个性签名</h2>
+                <p>{{user.signature || '未知'}}</p>
+            </div>
+        </div>
+
+        <div class="list md-bottom-shadow">
+            <div ng-click="logout()" class="item" style="background-color: white">
+                <h2>退出登录</h2>
+            </div>
+        </div>
+        <div style="min-height: 20px">
+
+        </div>
+    </ion-content>
+</ion-view>

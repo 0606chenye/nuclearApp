@@ -1,0 +1,27 @@
+<ion-view view-title="更改我的地区" cache-view="false">
+    <ion-content scroll="false">
+        <!--<div class="list">-->
+            <!--<label class="item item-input">-->
+                <!--<input type="text" placeholder="请输入所在地区" ng-model="user.region">-->
+            <!--</label>-->
+            <!--<div class="padding">-->
+                <!--<button ng-click="updateRegion()" class="button button-block button-positive">-->
+                    <!--提交-->
+                <!--</button>-->
+
+            <!--</div>-->
+        <!--</div>-->
+        <ion-scroll  class="list md-province-list" >
+            <a class="item item-light"  ng-repeat="province in provinces"
+               ng-click="selectProvince(province)" ng-class="{'md-item-active': province.clicked}">
+                {{province.name}}
+            </a>
+        </ion-scroll>
+        <ion-scroll class="list md-city-list" ng-show="provinceSelected" delegate-handle="cityScroll">
+            <a class="item item-stable" ng-repeat="city in cities"
+                    ng-click="updateRegion(city)">
+                {{city.name}}
+            </a>
+        </ion-scroll>
+    </ion-content>
+</ion-view>

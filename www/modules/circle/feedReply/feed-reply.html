@@ -1,0 +1,20 @@
+<ion-modal-view class="no-animation-modal">
+    <ion-content style="margin-top: 20%" scroll="false">
+        <div class="padding">
+            <label class="item item-input">
+                <textarea  type="text" placeholder="回复{{replyWhom}}" ng-model="feed.commentInput" minlength="1"
+                           rows="10" style="resize: none;"></textarea>
+            </label>
+            <div class="padding-top text-right">
+
+                <button ng-click="cancelReplying()" class="button button-calm button-clear">
+                    取消
+                </button>
+                <button ng-click="postComment()" class="button button-calm">
+                    提交
+                </button>
+            </div>
+
+        </div>
+    </ion-content>
+</ion-modal-view>

@@ -1,0 +1,34 @@
+<ion-view view-title="意见反馈"  cache-view="false">
+    <ion-content id="feedback" class="padding">
+        <div class="list list-inset">
+            <label class="item item-input">
+                <textarea rows="5" cols="10"
+                          maxlength="100"
+                          ng-model="textarea.content"
+                          ng-maxlength="150">
+                </textarea>
+            </label>
+        </div>
+        <button ng-click="postFeedback()" class="button button-block button-calm">提交</button>
+        <div class="list">
+            <div class="item item-divider">
+                <p class="md-row-title-right md-row-title-right-large"
+                        style="line-height: 30px">
+                    我的反馈<span>状态</span></p>
+
+            </div>
+
+            <div ng-repeat="feedback in feedbacks track by $index">
+
+                <div class="item">
+                    <p class="md-row-title-right md-row-title-right-large">{{feedback.content}}<span>{{feedback.state}}</span></p>
+                    <p  ng-if="feedback.result" class="md-no-clip padding md-margin-top" style="background-color: #eeeeee;">{{feedback.result}}</p>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div style="height: 50px;"></div>
+    </ion-content>
+</ion-view>

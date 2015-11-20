@@ -1,0 +1,112 @@
+<ion-view cache-view="false" hide-nav-bar="false" view-title="产品详情">
+    <ion-content >
+        <ion-slide-box slide-tabs-scrollable="false" delegate-handle="productTabs"  show-pager="false" ion-slide-tabs bar-fix-top="true" active-slide="currentTabId" on-slide-changed="slideHasChanged($index)">
+            <ion-slide  ion-slide-tab-label="图文详情{{info.specificsUrl}}"  >
+                <ion-scroll style="padding: 5px 0">
+                    <div ng-bind-html="content.specificsUrl"></div>
+                    <div style="min-height: 48px"></div>
+                </ion-scroll>
+
+                <!--<h1>Tab 0</h1>-->
+                <!--<iframe   src="{{::trustSrc(info.specificsUrl)}}">-->
+                <!--</iframe>-->
+            </ion-slide>
+            <ion-slide ion-slide-tab-label="技术文档">
+
+                <div ng-hide="downloadProgress===0" style="height: 20px; width: {{downloadProgress}}%; transition: width 0.1s; background: deepskyblue;">&nbsp;
+                </div>
+
+
+                <ion-scroll >
+                    <div class="padding-top" ng-repeat="doc in info.docs track by doc.id">
+                        <h4 class="padding">{{::doc.name}} <span style="color: grey; font-size: 12px">{{::doc.size}}</span></h4>
+                        <hr/>
+
+                        <div class="row text-center">
+                            <a ng-click="downloadDoc(doc)"
+                               class="col col-80 col-offset-10 button  button-calm">
+                                <i class="ion-document"></i> 点击下载PDF全文
+                            </a>
+                        </div>
+                    </div>
+                    <div style="min-height: 40px"></div>
+
+
+                </ion-scroll>
+
+
+                <!--<h1>Tab 1</h1>-->
+                <!--<div ng-include="'modules/product/productDetail/techDoc.html'"></div>-->
+            </ion-slide>
+            <ion-slide ion-slide-tab-label="应用业绩">
+                <ion-scroll style="padding: 5px 0">
+                    <!--<div ng-bind-html="content.servicesHistoryUrl"></div>-->
+                    <!--<div style="min-height: 48px"></div>-->
+                    <div class="padding">
+                        <!--<div class="row divider-light-blue text-center">-->
+                        <!--<md-dropdown class="col-50"  dropdown-list="providerTypes" current-value="providerType" >-->
+                        <!--</md-dropdown>-->
+                        <!--<md-dropdown class="col-50"  dropdown-list="providerTypes" current-value="providerType" >-->
+                        <!--</md-dropdown>-->
+                        <!--</div>-->
+
+                        <div ng-repeat="group in ::info.contracts">
+                            <div class="row padding-horizontal">
+                                <div class="col-80">
+                                    <h4 class="calm">{{::group[0].buyerGroup}}</h4>
+                                </div>
+                                <div class="col-20">
+                                    <p class="text-right md-margin-none md-margin-top">共{{::group.length}}条</p>
+                                </div>
+                            </div>
+
+
+                            <div class="padding md-lightest-bg" ng-repeat="contract in ::group ">
+                                <p class="positive">{{::contract.buyer}} :</p>
+                                <p class="md-row-title-right" >
+                                    {{::contract.title}}
+                                    <span class="padding-left calm">{{::contract.year}}</span>
+                                </p>
+                            </div>
+
+
+                            <div class="padding md-lightest-bg">
+                                &nbsp;
+                            </div>
+
+                            <div class="row">
+                                <div class="col-80">
+                                    &nbsp;
+                                </div>
+                                <div class="col-20">
+                                    <!--<p class="text-right">更多…</p>-->
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                        <p class="text-center padding-top" style="font-size:12px; color: #ddd;">以上资质均有核品汇独立对有效性和真实性进行确认</p>
+                    </div>
+
+
+                </ion-scroll>
+                <!--<iframe   src="{{::trustSrc(info.servicesHistoryUrl)}}">-->
+                <!--</iframe>-->
+            </ion-slide>
+            <ion-slide ion-slide-tab-label="配件">
+                <ion-scroll style="padding: 5px 0">
+                    <div ng-bind-html="content.spareUrl"></div>
+                    <div style="min-height: 48px"></div>
+
+                </ion-scroll>
+
+                <!--<iframe   src="{{::trustSrc(info.spareUrl)}}">-->
+                <!--</iframe>-->
+            </ion-slide>
+        </ion-slide-box>
+    </ion-content>
+</ion-view>

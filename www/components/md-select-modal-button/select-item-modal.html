@@ -1,0 +1,10 @@
+<div  class="modal semi-transparent no-animation-modal" ng-click="clickModal()" >
+    <ion-content ng-show="modal.isShown()" style="width: 80%;height: 80%; margin: 43px 10% ;" scrollbar-y="true">
+        <ion-list>
+            <ion-item ng-repeat="item in items"
+                      on-tap="selectItem(item)">
+                {{item.name}}
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</div>

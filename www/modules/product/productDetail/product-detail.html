@@ -1,0 +1,72 @@
+<ion-view view-title="产品详情">
+    <ion-content >
+        <div id="productDetails">
+            <ion-slide-box on-slide-changed="slideHasChanged($index)"  show-pager="false" active-slide="sliderId">
+                <ion-slide ng-repeat="image in ::images track by $index">
+                    <div >
+                        <img ng-src="{{image}}"/>
+                    </div>
+                </ion-slide>
+
+            </ion-slide-box>
+            <div class="caption padding-horizontal">
+                <div>&nbsp;</div>
+                <p>{{::product.name}}</p>
+                <button class="button button-clear button-assertive" ng-click="favoriteProduct()">
+                    <i ng-show="!product.favorited" class="icon ion-android-star-outline"></i>
+                    <i ng-show="product.favorited" class="icon ion-android-star"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="list" style="margin-bottom: 5px">
+
+            <a class="item md-highlight-item item-stable"
+               ng-click="toggleTagMore()">
+                <span>标签</span>
+                <p  ng-class="{'md-show-more':showTagsMore}">
+                    <span ng-repeat="tag in ::product.tags track by $index" class="assertive-bg md-tag-bg">{{::tag}}</span>
+
+                    <!--<span>asdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</span>-->
+                </p>
+            </a>
+            <a class="item md-highlight-item item-stable"
+               ng-click="toggleParasMore()">
+                <span>参数</span>
+                <p ng-class="{'md-show-more':showParasMore}">
+                    <span style="display: inline-block; margin-bottom: 0"
+                    ng-repeat="param in ::product.params">
+                        {{::param.value}}{{::param.unit}} &nbsp;</span>
+                    <!--<p>asdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</p>-->
+
+                </p>
+            </a>
+            <a class="item item-light item-icon-right" ui-sref="tab.product-tab({tabId:0})">
+                <p>图文详情</p>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </a>
+            <a class="item item-light item-icon-right" ui-sref="tab.product-tab({tabId:1})">
+                <p>技术文档</p>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </a>
+            <a class="item item-light item-icon-right" ui-sref="tab.product-tab({tabId:2})">
+                <p>应用业绩</p>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </a>
+            <a class="item item-light item-icon-right" ui-sref="tab.product-tab({tabId:3})">
+                <p>配件</p>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </a>
+            <a class="item item-light item-icon-right" ng-click="goCompanyPage()">
+                <p class="pull-left">所属公司</p>
+                <p class="pull-right">{{::product.companyName}}</p>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </a>
+        </div>
+        <!--<div class="row">-->
+                <!--<div ng-click="goCompanyPage()"-->
+                        <!--class="col col-50 col-offset-25 button button-calm button-small">查看公司信息  -->
+                <!--</div>         -->
+        <!--</div>-->
+    </ion-content>
+</ion-view>

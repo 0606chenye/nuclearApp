@@ -1,0 +1,18 @@
+<ion-view view-title="修改性别" cache-view="false">
+    <ion-content >
+        <div class="list">
+            <ion-checkbox ng-repeat="gender in genders"
+                          ng-model="gender.checked"
+                          ng-checked="gender.checked"
+                          ng-click="selectGender(gender)">
+                {{ gender.name }}
+            </ion-checkbox>
+        </div>
+
+        <div class="padding">
+            <button ng-click="updateGender()" class="button button-block button-positive">
+                确定
+            </button>
+        </div>
+    </ion-content>
+</ion-view>

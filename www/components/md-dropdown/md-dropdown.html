@@ -1,0 +1,15 @@
+<div class="md-dropdown"
+     ng-class="{'md-button-opened':showDropdown}"
+     click-anywhere-but-here="closeDropDown()">
+    <button class="button button-small md-button-calm-light" style="font-size: 14px; color: #007aff"  ng-style="{{buttonStyle}}"
+            ng-click="toggleDropdown()">
+        {{getDisplayValue()}}
+        <i ng-hide="showDropdown" class="ion-arrow-down-b" style="font-size: 1px !important;" ></i>
+        <i ng-show="showDropdown" class="ion-arrow-up-b" style="font-size: 1px !important;"></i>
+    </button>
+    <div class="list" ng-show="showDropdown">
+        <a class="item md-item-calm-light" ng-repeat="choice in dropdownList" ng-click="selectChoice(choice)">
+            {{choice.name}}
+        </a>
+    </div>
+</div>

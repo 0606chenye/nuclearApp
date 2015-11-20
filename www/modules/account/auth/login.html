@@ -1,0 +1,17 @@
+<ion-view view-title="登录" name="login-view" cache-view="false">
+    <ion-content class="padding">
+        <div class="list list-inset">
+            <label class="item item-input">
+                <i class="icon ion-iphone placeholder-icon"></i>
+                <input type="text" placeholder="手机号" ng-model="user.mobile">
+            </label>
+            <label class="item item-input">
+                <i class="icon ion-ios-locked-outline placeholder-icon"></i>
+                <input type="password" placeholder="密码" ng-model="user.password">
+            </label>
+        </div>
+        <button class="button button-block button-calm" ng-click="login()">立即登录</button>
+        <a ui-sref="tab.signup" class="calm">立即注册</a>
+        <a ui-sref="tab.resetPassword" class="calm pull-right">忘记密码</a>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,37 @@
+<ion-view cache-view="false" view-title="我的关注">
+    <!--<a href="#" class="button button-calm button-outline  light-bg md-back-top"><i class="ion-arrow-up-c"></i><span>顶部</span></a>-->
+
+    <ion-content id="search-list">
+        <!--<button ng-click="setAll()" class="button button-block button-positive">-->
+           <!--测试 设置为b-->
+        <!--</button>-->
+        <ion-slide-box delegate-handle="favoritesTabs"
+                       slide-tabs-scrollable="false"  show-pager="false" ion-slide-tabs bar-fix-top="false">
+            <ion-slide  ion-slide-tab-label="产品关注" >
+                <ion-scroll style="margin-top: 2px;">
+                    <md-item-list
+                            items="ctrl.productFavorites"
+                            item-style="{'height':'80px'}"
+                            which-state-to-go="tab.favorite-product-detail/:id"
+                            on-load-more="loadProductFavorites"
+                            on-delete="deleteProduct">
+                    </md-item-list>
+                </ion-scroll>
+            </ion-slide>
+            <ion-slide  ion-slide-tab-label="公司关注">
+                <ion-scroll style="margin-top: 2px;">
+                    <md-item-list
+                            items="ctrl.companyFavorites"
+                            item-style="{'height':'100px'}"
+                            which-state-to-go="tab.favorite-company-detail/:id"
+                            on-load-more="loadCompanyFavorites"
+                            on-delete="deleteCompany"
+                            description-field="brief">
+                    </md-item-list>
+                </ion-scroll>
+            </ion-slide>
+        </ion-slide-box>
+
+    </ion-content>
+
+</ion-view>

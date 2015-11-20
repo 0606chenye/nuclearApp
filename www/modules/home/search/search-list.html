@@ -1,0 +1,65 @@
+<ion-view cache-view="true" view-title="搜索结果">
+
+    <!--<ion-nav-buttons side="right">-->
+        <!--<button ng-show="onProductSlide()" ng-click="ctrl.mdProductListControl.changeShowType()" class="button button-icon button-clear ion-grid">-->
+        <!--</button>-->
+    <!--</ion-nav-buttons>-->
+    <ion-content id="search-list" overflow-scroll="true">
+
+        <ion-slide-box delegate-handle="searchTabs"
+                       slide-tabs-scrollable="false"  show-pager="false" ion-slide-tabs bar-fix-top="false">
+            <ion-slide  ion-slide-tab-label="商品结果" >
+                <!--<div  id="filter">-->
+                    <!--<div class="md-position-re md-checkbox">-->
+                        <!--<div class="item-checkbox checkbox-calm ">-->
+                            <!--<label class="checkbox">-->
+                                <!--<input type="checkbox"-->
+                                       <!--ng-model="ctrl.hasServiceHistory"-->
+                                       <!--ng-click="filterChanged()">-->
+                            <!--</label>-->
+                            <!--有供货业绩的产品-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<md-dropdown-->
+                            <!--dropdown-list="ctrl.authGroupTypes"-->
+                            <!--current-value="ctrl.authGroupType"-->
+                            <!--on-value-changed="filterChanged"-->
+                            <!--init-display="合格供应商">-->
+                    <!--</md-dropdown>-->
+                    <!--<md-dropdown-->
+                            <!--dropdown-list="ctrl.brandTypes"-->
+                            <!--current-value="ctrl.brandType"-->
+                            <!--on-value-changed="filterChanged"-->
+                            <!--init-display="供货性质">-->
+                    <!--</md-dropdown>-->
+                <!--</div>-->
+
+                <ion-scroll scrollbar-y="true" style="margin-top: 2px;" delegate-handle="productResults">
+                    <md-item-list
+                            items="ctrl.productResult"
+                            item-style="{'height':'80px'}"
+                            which-state-to-go="tab.search-product-detail/:id"
+                            control="ctrl.mdProductListControl"
+                            on-load-more="loadProductData">
+                    </md-item-list>
+                </ion-scroll>
+            </ion-slide>
+            <ion-slide  ion-slide-tab-label="公司结果">
+                <ion-scroll scrollbar-y="true"  style="margin-top: 2px;" delegate-handle="companyResults">
+                    <md-item-list
+                            items="ctrl.companyResult"
+                            item-style="{'height':'100px'}"
+                            which-state-to-go="tab.search-company-detail/:id"
+                            control="ctrl.mdCompanyListControl"
+                            on-load-more="loadCompanyData"
+                            description-field="brief">
+                    </md-item-list>
+                </ion-scroll>
+            </ion-slide>
+        </ion-slide-box>
+
+    </ion-content>
+    <a href ng-click="scrollTop()" class="button button-calm button-outline  light-bg md-back-top">
+        <i class="ion-arrow-up-c"></i><span>顶部</span>
+    </a>
+</ion-view>

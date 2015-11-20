@@ -1,0 +1,75 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+*/
+
+//custom varialbes
+//-------colors-------
+$theme:                           #2B75BC !default;//rgb(28,76,124)
+$theme-light:                     #4689D8 !default;//rgb(70,137,216)
+$theme-dark:                      #245BAE !default;//rgb(36,91,174)
+$link-color:                      $theme-dark  !default;
+$positive:                        $theme !default;
+$calm:                            $theme-light !default;
+$balanced:                        $theme-dark !default;
+//------base---------
+//手机端无雅黑字体，纯粹为了调试
+$font-family-sans-serif:          "Microsoft YaHei", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif !default;
+$font-family-light-sans-serif:    "Microsoft YaHei", "HelveticaNeue-Light", "Roboto-Light", "Segoe UI-Light", sans-serif-light !default;
+
+//--------tabs----------
+$tabs-off-opacity:                 0.6 !default;//edited
+
+//-------checkbox---------
+$checkbox-width-sm:                   20px !default;
+$checkbox-height-sm:                  20px !default;
+
+//------slide box---------
+$slidingTabsHeight:                   36px;
+
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+//universal styles
+@import "universal";
+
+//unique styles
+@import "unique";
+
+//custom styles derives from original ionic
+@import "md-tabs";
+@import "md-list";
+@import "md-select";
+@import "md-checkbox";
+@import "md-button";
+@import "md-bar";
+
+
+//custom components
+@import "md-tab-bar";
+@import "md-dropdown";
+@import "md-forms";
+
+//open source components
+@import "slidingTabs";
+@import "md-image-popover";
+
+
+
+

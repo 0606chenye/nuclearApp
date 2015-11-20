@@ -1,0 +1,10 @@
+<div id="province-select-modal" class="modal semi-transparent" >
+    <ion-content style="width: 80%;height: 80%;margin: 10%;" scrollbar-y="true">
+        <ion-list>
+            <ion-item ng-repeat="province in provinces"
+                    on-tap="selectProvince(province)">
+                {{province.name}}
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</div>
